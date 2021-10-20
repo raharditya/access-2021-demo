@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext, useMemo } from "react";
+import React, { useState, useRef, useContext, useMemo } from "react";
 import Header from "./Header";
 import Question from "./Question";
 import Countdown, { zeroPad } from "react-countdown";
@@ -10,7 +10,6 @@ import useLocalStorage from "../useLocalStorage";
 import { ReactComponent as Alarm } from "../assets/alarm.svg";
 
 const QuizWrapper = (props) => {
-  //mendefinisikan jumlah soal yang akan ditampilkan / defines the number of questions to be displayed
   const countdownRef = useRef(null);
   const user = useContext(UserContext);
 
@@ -97,7 +96,7 @@ const QuizWrapper = (props) => {
   }
 
   function handleQuizNext() {
-    if (currentQuestion < 103) {
+    if (currentQuestion < 50) {
       setCurrentQuestion(currentQuestion + 1);
 
       if (currentQuestion + 1 <= 25) {
@@ -105,15 +104,6 @@ const QuizWrapper = (props) => {
       }
       if (currentQuestion + 1 > 25 && currentQuestion <= 50) {
         setQuestionsListPage(2);
-      }
-      if (currentQuestion + 1 > 50 && currentQuestion <= 75) {
-        setQuestionsListPage(3);
-      }
-      if (currentQuestion + 1 > 75 && currentQuestion <= 100) {
-        setQuestionsListPage(4);
-      }
-      if (currentQuestion + 1 > 100) {
-        setQuestionsListPage(5);
       }
     }
   }
@@ -128,26 +118,9 @@ const QuizWrapper = (props) => {
       if (currentQuestion - 1 > 25 && currentQuestion <= 50) {
         setQuestionsListPage(2);
       }
-      if (currentQuestion - 1 > 50 && currentQuestion <= 75) {
-        setQuestionsListPage(3);
-      }
-      if (currentQuestion - 1 > 75 && currentQuestion <= 100) {
-        setQuestionsListPage(4);
-      }
-      if (currentQuestion - 1 > 100) {
-        setQuestionsListPage(5);
-      }
     }
   }
 
-  // const [fiveM, setFiveM] = useState();
-
-  // useEffect(() => {
-  //   const now = new Date();
-  //   setFiveM(now.getTime() + 300000);
-  // }, []);
-
-  // console.log(new Date(props.serverTimer.serverNow));
   const memoedTimer = useMemo(() => Date.now() + 300000, []);
 
   return (
@@ -175,7 +148,6 @@ const QuizWrapper = (props) => {
                     // }}
                     renderer={countdownRenderer}
                     ref={countdownRef}
-                    // onComplete={() => setOnboardingState(3)}
                   />
                 </p>
               </div>
@@ -203,7 +175,7 @@ const QuizWrapper = (props) => {
 
           <div className="max-w-sm min-h-screen mx-2 bg-white">
             <div className="items-center px-4 py-4">
-              <h1 className="font-bold pt-10 pb-12">Daftar Pertanyaan (103)</h1>
+              <h1 className="font-bold pt-10 pb-12">Daftar Pertanyaan (50)</h1>
               <div className="flex items-center justify-center">
                 <QuestionsList
                   questions={questionsNew}
@@ -227,7 +199,7 @@ const QuizWrapper = (props) => {
                 >
                   {"Kembali"}
                 </button>
-                <ul className="flex-1 flex items-center">
+                <ul className="flex-1 flex items-center justify-center w-full">
                   <li
                     className={`${
                       questionsListPage === 1 ? "font-bold" : ""
@@ -244,35 +216,11 @@ const QuizWrapper = (props) => {
                   >
                     2
                   </li>
-                  <li
-                    className={`${
-                      questionsListPage === 3 ? "font-bold" : ""
-                    } mr-2 cursor-pointer`}
-                    onClick={() => setQuestionsListPage(3)}
-                  >
-                    3
-                  </li>
-                  <li
-                    className={`${
-                      questionsListPage === 4 ? "font-bold" : ""
-                    } mr-2 cursor-pointer`}
-                    onClick={() => setQuestionsListPage(4)}
-                  >
-                    4
-                  </li>
-                  <li
-                    className={`${
-                      questionsListPage === 5 ? "font-bold" : ""
-                    } cursor-pointer`}
-                    onClick={() => setQuestionsListPage(5)}
-                  >
-                    5
-                  </li>
                 </ul>
                 <button
                   className="ml-12 font-bold flex-1"
                   onClick={() => {
-                    if (questionsListPage < 5) {
+                    if (questionsListPage < 2) {
                       setQuestionsListPage(questionsListPage + 1);
                     }
                   }}

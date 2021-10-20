@@ -59,10 +59,6 @@ function Question(props) {
                   onChange={(e) => handleEssayChange(currentId, e.target.value)}
                   className="px-4 py-4 border border-gray-500 rounded-xl focus:outline-none"
                 ></input>
-                <p className="py-4">
-                  Note : Format pengisian tanpa tanda baca "." dan "," contoh:
-                  999999
-                </p>
               </div>
             ) : (
               <div className="flex flex-col">
