@@ -47,3 +47,6 @@
   display: grid;
   grid-template-columns: 90px 2fr 1fr 1fr;
 }
+.ReactModal__Overlay {
+  z-index: 50;
+}
