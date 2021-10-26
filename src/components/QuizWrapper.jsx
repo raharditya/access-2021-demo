@@ -173,7 +173,7 @@ const QuizWrapper = (props) => {
             </div>
           </div>
 
-          <div className="max-w-sm min-h-screen mx-2 bg-white">
+          <div className="max-w-sm min-h-screen mx-2 bg-white flex-shrink-0">
             <div className="items-center px-4 py-4">
               <h1 className="font-bold pt-10 pb-12">Daftar Pertanyaan (50)</h1>
               <div className="flex items-center justify-center">
